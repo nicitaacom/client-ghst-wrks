@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .dark {
+    --brand: 0deg 85% 55%; /* Vibrant red */
+    --background: 0deg 0% 8%; /* Deep black */
+    --foreground: 0deg 0% 15%; /* Dark gray cards */
+    --foreground-accent: 0deg 0% 20%; /* Slightly lighter gray */
+    --title: 0deg 0% 95%; /* Near white text */
+    --title-foreground: 0deg 0% 8%; /* Dark text on light backgrounds */
+    --subTitle: 0deg 0% 70%; /* Light gray for subtitles */
+
+    /* The same colors */
+    --border-color: 0deg 0% 25%; /* Subtle borders */
+    --icon-color: 0deg 85% 55%; /* Red icons for accent */
+
+    /* Support colors */
+    --info: 210deg 80% 65%;
+    --warning: 35deg 90% 60%;
+    --danger: 0deg 85% 65%;
+    --success: 120deg 70% 60%;
+  }
+}
+
+html,
+body,
+:root {
+  height: 100%;
+  background-color: #202020;
+}
+
+* {
+  border-color: hsl(var(--subTitle));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+input {
+  color: hsl(var(--title));
+}
+
+p,
+span,
+li {
+  color: hsl(var(--subTitle));
+}
+
+body {
+  list-style: none;
+  font-family: "Inter", sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #821c1c #000000;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #6d1e1e;
+  border-radius: 16px; /* This works for Webkit browsers */
+  border: 2px inset #991700;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #ff6666; /* Optional: Change color on hover */
+}

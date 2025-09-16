@@ -1,0 +1,118 @@
+1. Business name
+Ghst Wrks
+
+2. years in business
+3
+
+3. years of experience (e.g you/your employee doing that for 10 years straight - so it's 10 years of experience)
+3
+
+4. guarantee (e.g 4 years for ceramic coating)
+1-3
+
+5. phone (so customers contact you)
++44 208 226 60 79
+
+6. email (e.g info@yourdomain.com)
+support@ghstwrks.co.uk
+
+7.which domain would you like? (get one on namecheap or insert existing one)
+http://www.ghstwrks.co.uk/
+
+8. yell pages url (if you have)
+https://www.tiktok.com/@ghstwrks?_t=ZN-8zmFGmvWLuY&_r=1
+
+9.address
+Unit 22a, Rippleside Commercial Estate, Barking IG11 0RJ
+
+10. city
+
+
+11. county
+
+
+12. postalCode
+
+
+businessHours: {
+monday: { opens: "10:00", closes: "18:00" },
+tuesday: { opens: "10:00", closes: "18:00" },
+wednesday: { opens: "10:00", closes: "18:00" },
+thursday: { opens: "10:00", closes: "18:00" },
+friday: { opens: "14:30", closes: "21:30" },
+saturday: { opens: "10:00", closes: "18:00" },
+sunday: { null }, (closed)
+},
+
+
+
+areas served (e.g Newcastle, Gateshead)
+London
+
+
+Primary Services (4 or 6 is recommended)
+Stage 1 Polish Offer
+Stage 2 Polish Offer
+12M Ceramic Coating
+24M Ceramic Coating
+36M Ceramic Coating
+Out Wrks - Exterior Only
+In Wrks - Interior Only
+Ambient Lighting
+Maintenance Wash
+Engine Bay Steam Clean
+The Full Wrks (everything included)
+
+
+
+facebook url
+N/A
+
+instagram url
+https://www.instagram.com/ghstwrks?igsh=cXZjdzVjM3h4aXhl
+
+
+founding year
+2023
+
+
+founders (name/names)
+Shake
+
+domain registrar e.g (namecheap/squarespace etc)
+squarespace
+
+
+
+
+
+what style/design would you like to be on your website?
+
+take some impression from here: (use search)
+https://dribbble.com/
+https://mobbin.com/discover/sites/latest
+https://iwash-uk.booking.getautomate.io/packages?category=635b521f7cadec879afcd6988154e99b
+
+simple for customers to book appointments
+
+
+
+what colours would you like on your website? e.g red&black
+black&white
+
+
+
+what fetures would you like to see on your website? e.g repuration-management + appointment-booking + before-after images
+appointment-booking
+repuration-management with QR code
+
+
+
+
+
+
+
+
+
+
+
