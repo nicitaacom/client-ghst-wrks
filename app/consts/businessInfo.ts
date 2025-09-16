@@ -6,7 +6,7 @@ export const businessInfo = {
   phone: "+44 208 226 60 79",
   timezone: "Europe/London",
   email: "support@ghstwrks.co.uk",
-  websiteUrl: "support@ghstwrks.co.uk",
+  websiteUrl: "https://www.ghstwrks.co.uk",
   yellPagesUrl: "",
   logoUrl: "",
   cta: "get free quote",

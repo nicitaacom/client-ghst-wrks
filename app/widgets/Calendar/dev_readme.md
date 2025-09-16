@@ -52,4 +52,24 @@ ALTER TABLE email_notifications ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Allow insert for everyone" ON email_notifications FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow update for everyone" ON email_notifications FOR UPDATE USING (true) WITH CHECK (true);
 CREATE POLICY "Allow delete for everyone" ON email_notifications FOR DELETE USING (true);
+
+
+
+
+CREATE TABLE sms_notifications (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  phone text NOT NULL,
+  message text NOT NULL,
+  scheduled_for timestamp with time zone NOT NULL,
+  created_at timestamp with time zone DEFAULT now()
+);
+
+
+-- 🔐 RLS Policies for Users
+ALTER TABLE sms_notifications ENABLE ROW LEVEL SECURITY;
+ -- Don't allow to select because it should be on server only because in that way hacker can access public supabase keys
+ -- and select all then .delete .eq some selected id
+CREATE POLICY "Allow insert for everyone" ON sms_notifications FOR INSERT WITH CHECK (true);
+CREATE POLICY "Allow update for everyone" ON sms_notifications FOR UPDATE USING (true) WITH CHECK (true);
+CREATE POLICY "Allow delete for everyone" ON sms_notifications FOR DELETE USING (true);
 ```
