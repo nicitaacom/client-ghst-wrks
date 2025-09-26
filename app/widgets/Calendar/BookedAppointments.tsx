@@ -22,7 +22,7 @@ export default function BookedAppointments({
     <div>
       <h3 className="text-lg font-semibold mb-2 text-subTitle">Booked Appointments</h3>
       <ul>
-        {appointments.length ? (
+        {appointments?.length ? (
           appointments.map(appt => (
             <li
               key={appt.id}

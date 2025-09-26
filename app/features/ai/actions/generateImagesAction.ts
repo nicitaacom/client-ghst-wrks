@@ -43,8 +43,8 @@ export async function generateImagesAction(carModel: string, recommendation: str
     // 4. Extract URLs safely
     const beforeImageUrl = beforeResponse?.data?.[0]?.url
     const afterImageUrl = afterResponse?.data?.[0]?.url
-    console.log(47, "beforeImageUrl - ", beforeImageUrl)
-    console.log(46, "afterImageUrl - ", afterImageUrl)
+    // console.log(47, "beforeImageUrl - ", beforeImageUrl)
+    // console.log(46, "afterImageUrl - ", afterImageUrl)
 
     if (!beforeImageUrl || !afterImageUrl) return "Failed to generate images"
 

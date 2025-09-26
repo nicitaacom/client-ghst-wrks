@@ -4,23 +4,28 @@
 
 @layer base {
   .dark {
-    --brand: 0deg 85% 55%; /* Vibrant red */
-    --background: 0deg 0% 8%; /* Deep black */
-    --foreground: 0deg 0% 15%; /* Dark gray cards */
-    --foreground-accent: 0deg 0% 20%; /* Slightly lighter gray */
-    --title: 0deg 0% 95%; /* Near white text */
+    --brand: 0deg 0% 85%; /* Smoky white */
+    --background: 0deg 0% 5%; /* Deep black */
+    --foreground: 0deg 0% 10%; /* Very dark gray cards */
+    --foreground-accent: 0deg 0% 15%; /* Slightly lighter gray */
+    --title: 0deg 0% 90%; /* Near white text */
     --title-foreground: 0deg 0% 8%; /* Dark text on light backgrounds */
-    --subTitle: 0deg 0% 70%; /* Light gray for subtitles */
+    --subTitle: 0deg 0% 60%; /* Medium gray for subtitles */
 
     /* The same colors */
-    --border-color: 0deg 0% 25%; /* Subtle borders */
-    --icon-color: 0deg 85% 55%; /* Red icons for accent */
+    --border-color: 0deg 0% 20%; /* Subtle borders */
+    --icon-color: 0deg 0% 75%; /* Light gray icons */
 
     /* Support colors */
-    --info: 210deg 80% 65%;
-    --warning: 35deg 90% 60%;
-    --danger: 0deg 85% 65%;
-    --success: 120deg 70% 60%;
+    --info: 0deg 0% 70%;
+    --warning: 0deg 0% 65%;
+    --danger: 0deg 0% 50%;
+    --success: 0deg 0% 80%;
+
+    /* Ghost-specific colors */
+    --ghost-primary: 0deg 0% 85%; /* Smoky white */
+    --ghost-secondary: 0deg 0% 25%; /* Dark gray */
+    --ghost-transparent: 0deg 0% 85%; /* For transparency effects */
   }
 }
 
@@ -67,7 +72,7 @@ body {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #821c1c #000000;
+  scrollbar-color: hsl(var(--brand)) #000000;
 }
 
 /* Chrome, Edge, and Safari */

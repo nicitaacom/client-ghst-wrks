@@ -8,35 +8,10 @@ export const businessInfo = {
   email: "support@ghstwrks.co.uk",
   websiteUrl: "https://www.ghstwrks.co.uk",
   yellPagesUrl: "",
-  logoUrl: "",
+  logoUrl: "/logo.jpg",
   cta: "get free quote",
 
   // 2. Location / map
-  address: {
-    street: "Unit 22a, Rippleside Commercial Estate",
-    city: "Barking",
-    county: "Greater London",
-    postalCode: "IG11 0RJ",
-    country: "United Kingdom",
-  },
-  coordinates: {
-    latitude: 51.531027,
-    longitude: 0.122846,
-  },
-  mapUrl:
-    "https://www.google.com/maps/place/GHST+WRKS/@51.5187899,0.0054014,10.86z/data=!4m14!1m7!3m6!1s0x47d8a55a3e3ceb8f:0x4d5b4fdeecb5d344!2sGHST+WRKS!8m2!3d51.5311378!4d0.120112!16s%2Fg%2F11xfbxzs7f!3m5!1s0x47d8a55a3e3ceb8f:0x4d5b4fdeecb5d344!8m2!3d51.5311378!4d0.120112!16s%2Fg%2F11xfbxzs7f?entry=ttu&g_ep=EgoyMDI1MDkxNC4wIKXMDSoASAFQAw%3D%3D",
-
-  // 3. Hours & service area
-  businessHours: {
-    monday: { opens: "10:00", closes: "18:00" },
-    tuesday: { opens: "10:00", closes: "18:00" },
-    wednesday: { opens: "10:00", closes: "18:00" },
-    thursday: { opens: "10:00", closes: "18:00" },
-    friday: { opens: "14:30", closes: "21:30" },
-    saturday: { opens: "10:00", closes: "18:00" },
-    // TODO - update so it's closed on sunday
-    sunday: { opens: "00:00", closes: "00:00" },
-  },
   areasServed: [
     "London",
     "Barking and Dagenham",
@@ -72,6 +47,30 @@ export const businessInfo = {
     "Wandsworth",
     "Westminster",
   ],
+  address: {
+    street: "Unit 22a, Rippleside Commercial Estate",
+    city: "Barking",
+    county: "Greater London",
+    postalCode: "IG11 0RJ",
+    country: "United Kingdom",
+  },
+  coordinates: {
+    latitude: 51.531027,
+    longitude: 0.122846,
+  },
+  mapUrl:
+    "https://www.google.com/maps/place/GHST+WRKS/@51.5187899,0.0054014,10.86z/data=!4m14!1m7!3m6!1s0x47d8a55a3e3ceb8f:0x4d5b4fdeecb5d344!2sGHST+WRKS!8m2!3d51.5311378!4d0.120112!16s%2Fg%2F11xfbxzs7f!3m5!1s0x47d8a55a3e3ceb8f:0x4d5b4fdeecb5d344!8m2!3d51.5311378!4d0.120112!16s%2Fg%2F11xfbxzs7f?entry=ttu&g_ep=EgoyMDI1MDkxNC4wIKXMDSoASAFQAw%3D%3D",
+
+  // 3. Hours & service area
+  businessHours: {
+    monday: { opens: "10:00", closes: "18:00" },
+    tuesday: { opens: "10:00", closes: "18:00" },
+    wednesday: { opens: "10:00", closes: "18:00" },
+    thursday: { opens: "10:00", closes: "18:00" },
+    friday: { opens: "14:30", closes: "21:30" },
+    saturday: { opens: "10:00", closes: "18:00" },
+    sunday: null, // null means closed
+  },
 
   // 4. High-level services (used for meta / schema)
   primaryServices: [
@@ -141,3 +140,61 @@ export const businessInfo = {
     max: 5,
   },
 }
+
+/*
+
+
+when client book an appointment with you where would you like to receive notification?
+Email or SMS?
+
+Answer: 
+
+-------------------------------
+
+when client fills out "Contact us" form where would you like to receive notification?
+Email or SMS?
+
+Answer: 
+
+
+-------------------------------
+
+ what style/design would you like to be on your website?
+ for example we I did 1 website for client in ghost style for other client in black and purple minimalistic design
+ so maybe you have some assotiation with your business? like maybe some your favorite animal or favorite number?
+ or maybe you saw website somewhere and you want something similar
+
+take some impression from here: (use search)
+https://dribbble.com/
+https://mobbin.com/discover/sites/latest
+https://iwash-uk.booking.getautomate.io/packages?category=635b521f7cadec879afcd6988154e99b
+
+Answer: simple for customers to book appointments
+
+
+
+-------------------------------
+
+
+what colours would you like on your website? e.g red&black
+
+Answer: black&white
+
+
+
+-------------------------------
+
+
+what fetures would you like to see on your website? e.g repuration-management + appointment-booking + before-after images
+
+Answer: appointment-booking - repuration-management with QR code
+
+
+-------------------------------
+
+
+should I add some additional section with examples of your work or should I keep it as is?
+
+Answer: 
+
+*/

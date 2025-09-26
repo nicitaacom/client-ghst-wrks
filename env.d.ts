@@ -13,6 +13,9 @@ declare global {
       AWS_ACCOUNT_ID: string
       AWS_SECRET_ACCESS_KEY: string
       NEXT_PUBLIC_AWS_REGION: string
+
+      RESEND_SECRET: string
+      NEXT_PUBLIC_EMAIL_FROM_DOMAIN: string
     }
   }
 }

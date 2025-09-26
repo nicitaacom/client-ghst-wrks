@@ -33,6 +33,10 @@ const config: Config = {
         danger: "hsl(var(--danger) / 1)",
         warning: "hsl(var(--warning) / 1)",
         success: "hsl(var(--success) / 1)",
+
+        "ghost-primary": "hsl(var(--ghost-primary) / 1)",
+        "ghost-secondary": "hsl(var(--ghost-secondary) / 1)",
+        "ghost-transparent": "hsl(var(--ghost-transparent) / 1)",
       },
     },
   },
