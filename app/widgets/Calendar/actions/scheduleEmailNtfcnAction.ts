@@ -48,7 +48,8 @@ export async function scheduleEmailNtfcnAction(
   }
 
   // 4. Create pg_cron schedule
-  const cronJobName = `email_notification_${notificationId}`
+  const formatted = moment(date).utcOffset(60).format("DD-MM-YYYY-[at]-HH-mm")
+  const cronJobName = `email_notification_${formatted}-GMTP1`
   const cronSchedule = `${scheduledFor.minute()} ${scheduledFor.hour()} ${scheduledFor.date()} ${
     scheduledFor.month() + 1
   } ${scheduledFor.day()}`

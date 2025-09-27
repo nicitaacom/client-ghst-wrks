@@ -83,66 +83,124 @@ ALTER TABLE email_notifications ENABLE ROW LEVEL SECURITY;
 import "jsr:@supabase/functions-js/edge-runtime.d.ts"
 import { createClient } from "jsr:@supabase/supabase-js@2"
 import { Resend } from "npm:resend"
-
 console.info("email reminder started")
-
 Deno.serve(async req => {
   // 1. Initialize Supabase client with service role
   const supabaseUrl = Deno.env.get("SUPABASE_URL")
   const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")
-  if (!supabaseUrl || !supabaseKey) return new Response("Missing Supabase credentials", { status: 500 })
+  if (!supabaseUrl || !supabaseKey)
+    return new Response("Missing Supabase credentials", {
+      status: 500,
+    })
   const supabase = createClient(supabaseUrl, supabaseKey)
-
   // 2. Get Resend credentials
   const resendSecret = Deno.env.get("RESEND_SECRET")
-  if (!resendSecret) return new Response("Missing Resend credentials", { status: 500 })
-
+  if (!resendSecret)
+    return new Response("Missing Resend credentials", {
+      status: 500,
+    })
   const resend = new Resend(resendSecret)
 
-  // 3. Find notifications
-  const now = new Date()
-  const inThirtyMinutes = new Date(now.getTime() + 30 * 60 * 1000)
-
-  const { data, error } = await supabase
-    .from("email_notifications")
-    .select("id, email, message")
-    .lte("scheduled_for", inThirtyMinutes.toISOString())
-    .gte("scheduled_for", now.toISOString())
-
-  if (error) {
-    console.error("Supabase query error:", error)
-    return new Response("Failed to fetch notifications", { status: 500 })
+  // 3. Read request body for notificationId
+  let body
+  try {
+    body = await req.json()
+  } catch (e) {
+    return new Response("Invalid JSON body", { status: 400 })
+  }
+  const notificationId = body.notificationId
+  if (!notificationId) {
+    return new Response("Missing notificationId", { status: 400 })
   }
 
-  if (!data?.length) {
-    return new Response(JSON.stringify({ message: "No notifications to send" }), {
-      headers: { "Content-Type": "application/json" },
+  // 4. Find specific notification
+  const { data, error } = await supabase
+    .from("email_notifications")
+    .select("id, email, message, appointment_id")
+    .eq("id", notificationId)
+
+  if (error) {
+    // Send status email on error
+    try {
+      await resend.emails.send({
+        from: "notifications@ns-autodetailing.com",
+        to: "notifications@ns-autodetailing.com",
+        subject: "Error in Appointment Reminder",
+        text: `Error fetching notification ${notificationId}: ${error.message}`,
+      })
+    } catch (err) {
+      console.error("Failed to send error email:", err)
+    }
+    return new Response("Failed to fetch notifications", {
+      status: 500,
     })
   }
 
-  // 4. Send Emails
-  const results = await Promise.all(
-    data.map(async ({ id, email, message }) => {
-      try {
-        await resend.emails.send({
-          from: "notifications@yourdomain.com", // TODO - update domain
-          to: email,
-          subject: "Appointment Reminder",
-          text: message,
-        })
+  let results = []
+  if (!data?.length) {
+    // Send status email on no data
+    try {
+      await resend.emails.send({
+        from: "notifications@ns-autodetailing.com",
+        to: "notifications@ns-autodetailing.com",
+        subject: "No Notification Found",
+        text: `No notification found for ID: ${notificationId}. Perhaps already processed.`,
+      })
+    } catch (err) {
+      console.error("Failed to send no data email:", err)
+    }
+    results = [{ id: notificationId, status: "No notification found" }]
+  } else {
+    // 5. Send Email and clean up
+    const item = data[0]
+    try {
+      // 5.1 Send email
+      await resend.emails.send({
+        from: "notifications@ns-autodetailing.com",
+        to: item.email,
+        subject: "Appointment Reminder",
+        text: item.message,
+      })
+      // 5.2 Remove rows
+      await supabase.from("email_notifications").delete().eq("id", item.id)
+      await supabase.from("appointments").delete().eq("id", item.appointment_id)
+      results = [{ id: item.id, status: "Email sent successfully" }]
+    } catch (err) {
+      console.error(`Resend error for notification ${item.id}:`, err)
+      results = [{ id: item.id, status: "Failed to send Email" }]
+    }
+  }
 
-        await supabase.from("email_notifications").delete().eq("id", id)
-        return { id, status: "Email sent successfully" }
-      } catch (err) {
-        console.error(`Resend error for notification ${id}:`, err)
-        return { id, status: "Failed to send Email" }
+  // 6. Remove cron job regardless of data presence (but after successful query)
+  try {
+    const findQuery = `SELECT jobid FROM cron.job WHERE command LIKE '%"notificationId": "${notificationId}"%'`
+    const { data: jobData, error: jobErr } = await supabase.rpc("execute_any_sql", { query: findQuery })
+    if (jobErr) {
+      console.error("Error finding cron job:", jobErr)
+    } else if (jobData && jobData.length > 0) {
+      const jobid = jobData[0].jobid
+      const unscheduleQuery = `SELECT cron.unschedule(${jobid})`
+      const { error: unsErr } = await supabase.rpc("execute_any_sql", { query: unscheduleQuery })
+      if (unsErr) {
+        console.error("Error unscheduling cron job:", unsErr)
       }
-    }),
-  )
+    } else {
+      console.log("No cron job found for this notificationId")
+    }
+  } catch (err) {
+    console.error("Error in unscheduling process:", err)
+  }
 
-  return new Response(JSON.stringify({ notifications: results }), {
-    headers: { "Content-Type": "application/json" },
-  })
+  return new Response(
+    JSON.stringify({
+      notifications: results,
+    }),
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  )
 })
 ```
 
