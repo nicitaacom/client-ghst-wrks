@@ -3,6 +3,7 @@
 import { Input } from "@/components/Input"
 import { businessInfo } from "@/consts/businessInfo"
 import Image from "next/image"
+import Link from "next/link"
 import React, { useState, useEffect, useRef } from "react"
 import { twMerge } from "tailwind-merge"
 import { contactUsAction } from "./actions/contactUsAction"
@@ -347,28 +348,49 @@ export function ContactUsForm() {
           </div>
         )}
 
-        {/* Submit button */}
-        <button
-          type="submit"
-          disabled={!isFormValid}
-          className={twMerge(
-            "w-full bg-ghost-primary/90 hover:bg-ghost-primary text-title-foreground px-4 py-3 mobile:py-4 font-semibold rounded-lg transition-all duration-200 shadow-lg relative group overflow-hidden text-sm mobile:text-base",
-            isFormValid
-              ? "hover:shadow-[0_0_25px_theme(colors.ghost-primary/40)] active:scale-[0.98] hover:shadow-ghost-primary/25"
-              : "opacity-50 cursor-not-allowed",
-          )}>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-ghost-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
-          <div className="flex items-center justify-center gap-2 relative z-10">
-            <span>Contact us - get response in 2mins</span>
-            <Image
-              src="/ghost-3.png"
-              alt="ghost"
-              width={16}
-              height={16}
-              className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity group-hover:animate-pulse"
-            />
-          </div>
-        </button>
+        {/* Submit button and booking link */}
+        <div className="flex flex-col gap-3 relative z-10">
+          <button
+            type="submit"
+            disabled={!isFormValid}
+            className={twMerge(
+              "w-full bg-ghost-primary/90 hover:bg-ghost-primary text-title-foreground px-4 py-3 mobile:py-4 font-semibold rounded-lg transition-all duration-200 shadow-lg relative group overflow-hidden text-sm mobile:text-base",
+              isFormValid
+                ? "hover:shadow-[0_0_25px_theme(colors.ghost-primary/40)] active:scale-[0.98] hover:shadow-ghost-primary/25"
+                : "opacity-50 cursor-not-allowed",
+            )}>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-ghost-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+            <div className="flex items-center justify-center gap-2 relative z-10">
+              <span>Contact us - get response in 2mins</span>
+              <Image
+                src="/ghost-3.png"
+                alt="ghost"
+                width={16}
+                height={16}
+                className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity group-hover:animate-pulse"
+              />
+            </div>
+          </button>
+
+          {/* 8. Booking link */}
+          <Link
+            href="/booking"
+            className="w-full bg-foreground-accent/50 hover:bg-ghost-primary/20 backdrop-blur-sm text-title border border-ghost-secondary/40 hover:border-ghost-primary/40 px-4 py-3 mobile:py-4 font-semibold rounded-lg transition-all duration-200 shadow-sm relative group overflow-hidden text-sm mobile:text-base text-center">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-ghost-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+            <div className="flex items-center justify-center gap-2 relative z-10">
+              <span>Go to booking</span>
+              <Image
+                src="/ghost-1.png"
+                alt="ghost"
+                width={16}
+                height={16}
+                className="w-4 h-4 opacity-50 group-hover:opacity-70 transition-opacity group-hover:animate-pulse"
+              />
+            </div>
+            {/* Ghost focus indicator for link */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-ghost-primary/10 via-transparent to-ghost-primary/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          </Link>
+        </div>
 
         {/* Ghost gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-ghost-primary/5 via-transparent to-ghost-primary/5 pointer-events-none rounded-xl" />
