@@ -160,7 +160,7 @@ Answer:
 -------------------------------
 
  what style/design would you like to be on your website?
- for example we I did 1 website for client in ghost style for other client in black and purple minimalistic design
+ for example I did 1 website for client in ghost style for other client in black and purple minimalistic design
  so maybe you have some assotiation with your business? like maybe some your favorite animal or favorite number?
  or maybe you saw website somewhere and you want something similar
 
@@ -196,5 +196,12 @@ Answer: appointment-booking - repuration-management with QR code
 should I add some additional section with examples of your work or should I keep it as is?
 
 Answer: 
+
+
+
+
+-------------------------------
+
+send them a msg in WA with next steps
 
 */
